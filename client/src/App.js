@@ -69,7 +69,6 @@ class App extends Component {
       const response = await axios.post('/auth/sign_in', payload)
       saveAuthTokens(response.headers)
 
-
       const posts = await this.getPosts()
 
       this.setState({
@@ -124,12 +123,12 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <button onClick={this.signOut}>Sign Out</button>
           <Switch>
             <Route exact path="/signUp" render={SignUpLogInComponent} />
             <Route exact path="/posts" render={PostsComponent} />
           </Switch>
           {this.state.signedIn ? <Redirect to="/posts" /> : <Redirect to="/signUp" />}
-          <button onClick={this.signOut}>Sign Out</button>
         </div>
       </Router>
     )

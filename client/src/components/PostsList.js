@@ -11,7 +11,6 @@ const PostsList = (props) => {
     return (
         <div>
             <h1>Posts</h1>
-
             {props.posts.length > 0 ? posts : null}
         </div>
     )
