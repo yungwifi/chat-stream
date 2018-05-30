@@ -1,19 +1,53 @@
-import React from 'react'
-import Post from "./Post"
+import React, { Component } from 'react'
+import axios from 'axios'
 
-const PostsList = (props) => {
+class PostsList extends Component {
+    state = {
+        posts: []
+    }
 
-    const posts = props.posts.map((post) => {
+    componentDidMount() {
+        this.getPosts()
+    }
+
+    getPosts = async () => {
+        try {
+            const response = await axios.get('/posts')
+            console.log("POSTS", response.data)
+            this.setState({ posts: response.data })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    deletePost = async (postId) => {
+        try {
+            await axios.delete(`/posts/${postId}`)
+
+            const posts = await this.getPosts()
+            this.setState({ posts })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    render() {
+        console.log("RENDERING POSTS", this.state.posts)
+        const userPosts = this.state.posts.map((post, i) => {
+            return (
+                <div key={i}>
+                    <div>{post.content}</div>
+                    <button onClick={this.deletePost}>Delete</button>
+                </div>
+            )
+        })
         return (
-            <Post {...post} deletePost={props.deletePost} key={post.id} />
+            <div>
+                <h1>Posts</h1>
+                {userPosts}
+            </div>
         )
-    })
-    return (
-        <div>
-            <h1>Posts</h1>
-            {props.posts.length > 0 ? posts : null}
-        </div>
-    )
+    }
 }
 
 export default PostsList

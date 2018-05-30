@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, :except => [:show, :index]
     load_and_authorize_resource  only: [:destroy]
   
     def index
       @posts = Post.all
+
+      puts @posts
       
       render json: @posts
     end

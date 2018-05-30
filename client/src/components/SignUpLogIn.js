@@ -1,39 +1,95 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import axios from 'axios'
+import { clearAuthTokens, saveAuthTokens, setAxiosDefaults, userIsLoggedIn } from "../util/SessionHeaderUtil"
 
 class SignUpLogIn extends Component {
 
     state = {
         email: '',
         password: '',
-        password_confirmation: ''
+        password_confirmation: '',
+        signedIn: false
     }
 
-    signUp = (event) => {
-        event.preventDefault()
-        this.props.signUp(
-            this.state.email,
-            this.state.password,
-            this.state.password_confirmation
-        )
+    async componentDidMount() {
+        try {
+            const signedIn = userIsLoggedIn()
+            if (signedIn) {
+                setAxiosDefaults()
+            }
+
+            this.setState({
+                signedIn
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
-    signIn = (event) => {
+    signUp = async (event) => {
+        try {
+            const payload = {
+                email: this.state.email,
+                password: this.state.password,
+                password_confirmation: this.state.password_confirmation
+            }
+            const response = await axios.post('/auth', payload)
+            saveAuthTokens(response.headers)
+
+            this.setState({
+                signedIn: true,
+            })
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    signIn = async (event) => {
         event.preventDefault()
-        this.props.signIn(
-            this.state.email,
-            this.state.password
-        )
+        try {
+            const payload = {
+                email: this.state.email,
+                password: this.state.password
+            }
+            const response = await axios.post('/auth/sign_in', payload)
+            saveAuthTokens(response.headers)
+
+            this.setState({
+                signedIn: true,
+            })
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    signOut = async (event) => {
+        try {
+            event.preventDefault()
+
+            await axios.delete('/auth/sign_out')
+
+            clearAuthTokens();
+
+            this.setState({ signedIn: false })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     handleChange = (event) => {
         const newState = { ...this.state }
         newState[event.target.name] = event.target.value
+        console.log(newState)
         this.setState(newState)
     }
 
     render() {
         return (
             <div>
+                <button onClick={this.signOut}>Sign Out</button>
                 <form>
                     <div>
                         <label htmlFor="email">E-mail: </label>
@@ -52,6 +108,7 @@ class SignUpLogIn extends Component {
                     <button onClick={this.signUp}>Sign Up</button>
                     <button onClick={this.signIn}>Log In</button>
                 </form>
+                {this.state.signedIn ? <Redirect to="/posts" /> : <Redirect to="/signUp" />}
             </div>
         )
     }

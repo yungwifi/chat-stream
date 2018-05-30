@@ -7,9 +7,7 @@ const Post = (props) => {
     }
     return (
         <div>
-            <div><h2>{props.title}</h2></div>
-            <div>{props.content}</div>
-            <button onClick={deletePost}>Delete</button>
+
         </div>
     )
 }
