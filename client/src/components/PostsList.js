@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import styled from 'styled-components'
+import { Button } from 'react-materialize'
+
+const ChatBox = styled.div`
+border: solid black 1px;
+height: 81vh;
+display: flex;
+justify-content: space-between;
+flex-direction: column;
+background-color: black;
+color: white;
+font-size: 14px;`
 
 class PostsList extends Component {
     state = {
@@ -31,20 +43,32 @@ class PostsList extends Component {
         }
     }
 
+    createPost = async () => {
+        axios.post('/posts')
+    }
+
     render() {
         console.log("RENDERING POSTS", this.state.posts)
         const userPosts = this.state.posts.map((post, i) => {
             return (
                 <div key={i}>
-                    <div>{post.content}</div>
-                    <button onClick={this.deletePost}>Delete</button>
+                    <div>{post.user_id}: {post.content}</div>
                 </div>
             )
         })
         return (
             <div>
-                <h1>Posts</h1>
-                {userPosts}
+                <ChatBox >
+                    <div>
+                        {userPosts}
+                    </div>
+                    <div>
+                        <form>
+                            <textarea placeholder="Chat..."> </textarea>
+                            <Button className="black right"> Send </Button>
+                        </form>
+                    </div>
+                </ChatBox>
             </div>
         )
     }

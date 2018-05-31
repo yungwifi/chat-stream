@@ -24,7 +24,7 @@ a:hover{
 const NavStyled = styled.div`
 display: flex;
 justify-content: space-between;
-width: 100vw;`
+width: 99vw;`
 
 const LogoStyled = styled.div`
 margin-left: 10px;`

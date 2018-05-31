@@ -7,6 +7,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'devise_token_auth'
 gem 'cancancan'
+gem 'redis', '~> 3.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
