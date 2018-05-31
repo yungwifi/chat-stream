@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :chat_rooms
+  has_many :messages
 end
