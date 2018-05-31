@@ -17,7 +17,8 @@ class SignUpLogIn extends Component {
         email: '',
         password: '',
         password_confirmation: '',
-        signedIn: false
+        signedIn: false,
+        redirect: false
     }
 
     async componentDidMount() {
@@ -36,6 +37,7 @@ class SignUpLogIn extends Component {
     }
 
     signUp = async (event) => {
+        event.preventDefault()
         try {
             const payload = {
                 email: this.state.email,
@@ -47,6 +49,7 @@ class SignUpLogIn extends Component {
 
             this.setState({
                 signedIn: true,
+                redirect: true
             })
 
         } catch (error) {
@@ -66,22 +69,9 @@ class SignUpLogIn extends Component {
 
             this.setState({
                 signedIn: true,
+                redirect: true
             })
 
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    signOut = async (event) => {
-        try {
-            event.preventDefault()
-
-            await axios.delete('/auth/sign_out')
-
-            clearAuthTokens();
-
-            this.setState({ signedIn: false })
         } catch (error) {
             console.log(error)
         }
@@ -95,9 +85,11 @@ class SignUpLogIn extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return (<Redirect to="/chat" />)
+        }
         return (
             <div>
-                <button onClick={this.signOut}>Sign Out</button>
                 <StyledForm >
                     <form>
                         <div>
