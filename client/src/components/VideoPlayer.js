@@ -3,7 +3,7 @@ import YouTube from 'react-youtube';
 
 class VideoPlayer extends React.Component {
     state = {
-        youtubeVideo: ''
+        youtubeVideo: 'YseW0ucRFTU'
     }
 
     playVideo = (event) => {
@@ -23,11 +23,14 @@ class VideoPlayer extends React.Component {
         };
 
         return (
-            <YouTube
-                videoId={this.state.youtubeVideo}
-                opts={opts}
-                onReady={this.playVideo}
-            />
+            <div>
+                <YouTube
+                    videoId={this.state.youtubeVideo}
+                    opts={opts}
+                    onReady={this.playVideo}
+                />
+                <div> watch shit, dont be creepy </div>
+            </div>
         );
     }
 

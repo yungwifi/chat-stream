@@ -10,7 +10,7 @@ width: 99vw;
 height: 55px;
 background-color: black;
 display: flex;
-align-content: center;
+align-items: center;
 a{
     color: white;
     text-decoration: none;
