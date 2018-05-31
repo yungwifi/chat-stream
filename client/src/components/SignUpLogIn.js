@@ -2,6 +2,14 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import { clearAuthTokens, saveAuthTokens, setAxiosDefaults, userIsLoggedIn } from "../util/SessionHeaderUtil"
+import styled from 'styled-components'
+
+const StyledForm = styled.div`
+width: 45vw;`
+
+const StyledButton = styled.div`
+display: flex;
+justify-content: space-between;`
 
 class SignUpLogIn extends Component {
 
@@ -90,25 +98,27 @@ class SignUpLogIn extends Component {
         return (
             <div>
                 <button onClick={this.signOut}>Sign Out</button>
-                <form>
-                    <div>
-                        <label htmlFor="email">E-mail: </label>
-                        <input onChange={this.handleChange} type="text" name="email" value={this.state.email} />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password: </label>
-                        <input onChange={this.handleChange} type="password" name="password" value={this.state.password} />
-                    </div>
-                    <div>
-                        <label htmlFor="password_confirmation">Confirm Password: </label>
-                        <input onChange={this.handleChange} type="password" name="password_confirmation"
-                            value={this.state.password_confirmation} />
-                    </div>
-
-                    <button onClick={this.signUp}>Sign Up</button>
-                    <button onClick={this.signIn}>Log In</button>
-                </form>
-                {this.state.signedIn ? <Redirect to="/posts" /> : <Redirect to="/signUp" />}
+                <StyledForm >
+                    <form>
+                        <div>
+                            <label htmlFor="email">E-mail: </label>
+                            <input onChange={this.handleChange} type="text" name="email" value={this.state.email} />
+                        </div>
+                        <div>
+                            <label htmlFor="password">Password: </label>
+                            <input onChange={this.handleChange} type="password" name="password" value={this.state.password} />
+                        </div>
+                        <div>
+                            <label htmlFor="password_confirmation">Confirm Password: </label>
+                            <input onChange={this.handleChange} type="password" name="password_confirmation"
+                                value={this.state.password_confirmation} />
+                        </div>
+                        <StyledButton >
+                            <button onClick={this.signUp}>Sign Up</button>
+                            <button onClick={this.signIn}>Log In</button>
+                        </StyledButton>
+                    </form>
+                </StyledForm>
             </div>
         )
     }

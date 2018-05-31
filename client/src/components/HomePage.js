@@ -40,7 +40,7 @@ class HomePage extends Component {
                 <Navbar />
                 <HomePageContainer >
                     <ButtonStyle>
-                        <HomeButton><Link to="/posts"> Shut Up. </Link></HomeButton>
+                        <HomeButton><Link to="/chat"> Shut Up. </Link></HomeButton>
                     </ButtonStyle>
                 </HomePageContainer>
             </div>

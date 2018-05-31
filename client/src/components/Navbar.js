@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import SignUpLogIn from './SignUpLogIn';
+import { Modal, Button } from 'react-materialize'
 
 const Nav = styled.div`
 border: solid black 1px;
@@ -40,7 +42,11 @@ class Navbar extends Component {
                             <Link to="/"> Chat Stream </Link>
                         </LogoStyled>
                         <IconStyled >
-                            <Link to="/"><i class="material-icons">group</i> </Link>
+                            <Modal
+                                header='Sign Up /Sign In'
+                                trigger={<Button className="black"><i class="material-icons">group</i></Button>}>
+                                <SignUpLogIn />
+                            </Modal>
                         </IconStyled>
                     </NavStyled>
                 </Nav>
