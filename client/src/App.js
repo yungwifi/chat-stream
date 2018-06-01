@@ -6,32 +6,6 @@ import HomePage from './components/HomePage'
 import ChatPage from './components/ChatPage'
 
 class App extends Component {
-  state = {
-    auth: {
-      isLoggedIn: false,
-      user: ''
-    },
-    joinLine: {
-      code: "",
-      error: false,
-      lineId: null,
-      redirect: false
-    },
-    line: {
-      line: {},
-      users: []
-    }
-  }
-
-  updateAppStateLine = (newLine) => {
-    console.log('updateAppStateLine: ', this.state.line)
-    this.setState({
-      line: {
-        line: newLine.line,
-        users: newLine.users
-      }
-    })
-  }
 
   render() {
     return (

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { Button } from 'react-materialize'
+import NewPost from './NewPost';
 
 const ChatBox = styled.div`
 border: solid black 1px;
@@ -25,27 +26,21 @@ class PostsList extends Component {
     getPosts = async () => {
         try {
             const response = await axios.get('/posts')
-            console.log("POSTS", response.data)
             this.setState({ posts: response.data })
         } catch (error) {
             console.log(error)
         }
     }
 
-    deletePost = async (postId) => {
-        try {
-            await axios.delete(`/posts/${postId}`)
-
-            const posts = await this.getPosts()
-            this.setState({ posts })
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    createPost = async () => {
-        axios.post('/posts')
-    }
+    // deletePost = async (postId) => {
+    //     try {
+    //         await axios.delete(`/posts/${postId}`)
+    //         const posts = await this.getPosts()
+    //         this.setState({ posts })
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
     render() {
         console.log("RENDERING POSTS", this.state.posts)
@@ -63,10 +58,7 @@ class PostsList extends Component {
                         {userPosts}
                     </div>
                     <div>
-                        <form>
-                            <textarea placeholder="Chat..."> </textarea>
-                            <Button className="black right"> Send </Button>
-                        </form>
+                        <NewPost />
                     </div>
                 </ChatBox>
             </div>
