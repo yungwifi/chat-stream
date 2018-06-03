@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import { clearAuthTokens, saveAuthTokens, setAxiosDefaults, userIsLoggedIn } from "../util/SessionHeaderUtil"
+import ChatRoom from './ChatRoom';
 
 const PageContainer = styled.div`
 display: flex;
@@ -40,7 +41,7 @@ class ChatPage extends Component {
 
     render() {
         if (this.state.redirect) {
-            return (<Redirect to="/chat" />)
+            return (<Redirect to="/" />)
         }
         return (
             <div>
@@ -48,7 +49,7 @@ class ChatPage extends Component {
                 <button onClick={this.signOut}>Sign Out</button>
                 <PageContainer >
                     <VideoPlayer />
-                    <PostsList />
+                    <ChatRoom />
                 </PageContainer>
             </div>
         );

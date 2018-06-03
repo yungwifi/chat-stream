@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Button } from 'react-materialize'
+import { API_ROOT, HEADERS } from '../constants';
 
 class NewPost extends Component {
     state = {
@@ -16,9 +17,10 @@ class NewPost extends Component {
         this.setState({ post })
     }
 
-    createPost = () => {
+    createPost = (e) => {
+        e.preventDefault()
         console.log("CREATE POST ROUTE BEING CALLED")
-        axios.post(`/posts`, { post: this.state.post })
+        axios.post(`${API_ROOT}/posts`, { headers: HEADERS, post: this.state.post })
             .then((res) => {
                 console.log("RESPONSE FROM NEW POST", res.data)
                 this.setState({
@@ -30,11 +32,12 @@ class NewPost extends Component {
             })
     }
 
+
     render() {
         return (
             <div>
                 <form onSubmit={this.createPost}>
-                    <textarea onChange={this.handleChange}> </textarea>
+                    <textarea type="text" name="content" onChange={this.handleChange}> </textarea>
                     <Button className="black right"> Send </Button>
                 </form>
             </div>

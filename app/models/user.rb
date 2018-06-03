@@ -4,9 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
-
+  belongs_to :chat_rooms, optional: true
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :chat_rooms
-  has_many :messages
 end

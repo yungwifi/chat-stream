@@ -3,6 +3,8 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { Button } from 'react-materialize'
 import NewPost from './NewPost';
+import { API_ROOT } from '../constants';
+import Cable from './Cable';
 
 const ChatBox = styled.div`
 border: solid black 1px;
@@ -25,7 +27,7 @@ class PostsList extends Component {
 
     getPosts = async () => {
         try {
-            const response = await axios.get('/posts')
+            const response = await axios.get(`${API_ROOT}/posts`)
             this.setState({ posts: response.data })
         } catch (error) {
             console.log(error)

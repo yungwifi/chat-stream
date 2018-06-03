@@ -44,7 +44,7 @@ class Navbar extends Component {
                         <IconStyled >
                             <Modal
                                 header='Sign Up /Sign In'
-                                trigger={<Button className="black"><i class="material-icons">group</i></Button>}>
+                                trigger={<Button className="black"><i className="material-icons">group</i></Button>}>
                                 <SignUpLogIn />
                             </Modal>
                         </IconStyled>

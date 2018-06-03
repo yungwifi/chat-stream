@@ -1,18 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from "react-router-dom"
+import { ActionCableProvider } from 'react-actioncable-provider';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import actionCable from 'actioncable'
+import { API_WS_ROOT } from './constants';
 
-
-const CableApp = {}
-CableApp.cable = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`)
-// Pass in CableApp as cableApp prop
 ReactDOM.render(
-    <Router>
-        <App cableApp={CableApp} />
-    </Router>,
-    document.getElementById('root'));
+    <ActionCableProvider url={API_WS_ROOT}>
+        <App />
+    </ActionCableProvider>,
+    document.getElementById('root')
+);
 registerServiceWorker();
