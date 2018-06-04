@@ -20,9 +20,10 @@ class PostsController < ApplicationController
       @user = current_user
       @post = @user.posts.build(post_params)
       @chat_room = ChatRoom.find(params[:chat_room_id])
-      if @post.save
+      @post.chat_room = @chat_room
+      if @post.save!
         serialized_data = ActiveModelSerializers::Adapter::Json.new(
-          PostSerializer.new(post)
+          PostSerializer.new(@post)
         ).serializable_hash
         PostsChannel.broadcast_to @chat_room, serialized_data
         head :ok
@@ -48,8 +49,7 @@ class PostsController < ApplicationController
     end
   
     private
-  
     def post_params
-      params.require(:post).permit(:content)
+      params.require(:post).permit(:content, :chat_room_id)
     end
   end

@@ -28,13 +28,6 @@ class ChatRoom extends Component {
         }
     }
 
-    handleReceivedConversation = response => {
-        const { chat_room } = response;
-        this.setState({
-            chat_rooms: [...this.state.chat_rooms, chat_room]
-        });
-    };
-
     handleReceivedMessage = response => {
         const { post } = response;
         const chat_rooms = [...this.state.chat_rooms];
