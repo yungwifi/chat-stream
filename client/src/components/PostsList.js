@@ -21,6 +21,7 @@ class PostsList extends Component {
     }
 
     componentDidMount() {
+        this.getPosts()
         this.interval = setInterval(() => this.getPosts(), 1000);
     }
 
