@@ -24,9 +24,8 @@ class NewPost extends Component {
         axios.post(`${API_ROOT}/chat_rooms/1/posts`, { post: this.state.post })
             .then((res) => {
                 console.log("RESPONSE FROM NEW POST", res.data)
-                this.setState({
-                    post: res.data.posts,
-                })
+                this.setState({ post: res.data.posts, })
+                this.props.getPosts()
             })
             .catch((error) => {
                 console.log(error)

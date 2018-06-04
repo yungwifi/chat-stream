@@ -21,7 +21,7 @@ class PostsList extends Component {
     }
 
     componentDidMount() {
-        this.getPosts()
+        this.interval = setInterval(() => this.getPosts(), 1000);
     }
 
     getPosts = async () => {
@@ -62,6 +62,7 @@ class PostsList extends Component {
                     </div>
                     <div>
                         <NewPost
+                            getPosts={this.getPosts}
                             chat_room={this.props.chat_room.id}
                             chatRoomId={this.props.activeChatRoom} />
                     </div>
