@@ -19,8 +19,8 @@ class PostsController < ApplicationController
     def create
       @user = current_user
       @post = @user.posts.build(post_params)
-      @chat_room = ChatRoom.find(post_params[:chat_room_id])
-      if @user.save
+      @chat_room = ChatRoom.find(params[:chat_room_id])
+      if @post.save
         serialized_data = ActiveModelSerializers::Adapter::Json.new(
           PostSerializer.new(post)
         ).serializable_hash

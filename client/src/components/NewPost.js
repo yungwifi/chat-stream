@@ -7,7 +7,8 @@ class NewPost extends Component {
     state = {
         post: {
             content: ''
-        }
+        },
+        activeChatRoom: null
     }
 
     handleChange = (e) => {
@@ -19,8 +20,8 @@ class NewPost extends Component {
 
     createPost = (e) => {
         e.preventDefault()
-        console.log("CREATE POST ROUTE BEING CALLED")
-        axios.post(`${API_ROOT}/posts`, { headers: HEADERS, post: this.state.post })
+        console.log("CREATE POST ROUTE BEING CALLED", this.state.post)
+        axios.post(`${API_ROOT}/chat_rooms/1/posts`, { post: this.state.post })
             .then((res) => {
                 console.log("RESPONSE FROM NEW POST", res.data)
                 this.setState({
@@ -37,7 +38,7 @@ class NewPost extends Component {
         return (
             <div>
                 <form onSubmit={this.createPost}>
-                    <textarea onClick={this.props.setChatRoomId} type="text" name="content" onChange={this.handleChange}> </textarea>
+                    <textarea type="text" name="content" onChange={this.handleChange}> </textarea>
                     <Button className="black right"> Send </Button>
                 </form>
             </div>

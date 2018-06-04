@@ -19,6 +19,7 @@ font-size: 14px;`
 class PostsList extends Component {
     state = {
         posts: []
+
     }
 
     componentDidMount() {
@@ -27,8 +28,10 @@ class PostsList extends Component {
 
     getPosts = async () => {
         try {
-            const response = await axios.get(`${API_ROOT}/posts`)
-            this.setState({ posts: response.data })
+            const response = await axios.get(`${API_ROOT}/chat_rooms/1/posts`)
+            this.setState({
+                posts: response.data,
+            })
         } catch (error) {
             console.log(error)
         }
@@ -62,7 +65,7 @@ class PostsList extends Component {
                     <div>
                         <NewPost
                             chat_room={this.props.chat_room.id}
-                            setChatRoomId={this.props.setChatRoomId} />
+                            chatRoomId={this.props.activeChatRoom} />
                     </div>
                 </ChatBox>
             </div>

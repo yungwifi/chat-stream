@@ -13,7 +13,11 @@ const PageContainer = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: space-around;
-margin-top: 30px;`
+margin-top: 30px;
+@media(max-width: 600px){
+    display: flex;
+    flex-direction:column;
+}`
 
 class ChatPage extends Component {
 

@@ -1,5 +1,6 @@
 class PostsChannel < ApplicationCable::Channel
   def subscribed
+    @user = current_user
     @chat_room = ChatRoom.find(params[:chat_room])
     stream_for @chat_room
   end

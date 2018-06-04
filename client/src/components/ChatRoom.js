@@ -8,8 +8,8 @@ import NewPost from './NewPost';
 
 class ChatRoom extends Component {
     state = {
-        chat_rooms: [],
-        activeChatRoom: null
+        chat_rooms: {},
+        activeChatRoom: 1
     };
 
     componentDidMount = () => {
@@ -27,10 +27,6 @@ class ChatRoom extends Component {
             console.log(error)
         }
     }
-
-    setChatRoomId = () => {
-        this.setState({ activeChatRoom: this.state.chat_rooms.id });
-    };
 
     handleReceivedConversation = response => {
         const { chat_room } = response;
@@ -62,7 +58,7 @@ class ChatRoom extends Component {
                 />
                 <PostsList
                     chat_room={this.state.chat_rooms}
-                    setChatRoomId={this.setChatRoomId}
+                    chatRoomId={this.activeChatRoom}
                 />
             </div>
         );
