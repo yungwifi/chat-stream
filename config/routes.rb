@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :chat_rooms do
     resources :posts
   end
-  mount ActionCable.server, at: '/cable'
+  # mount ActionCable.server, at: '/cable'
 end
