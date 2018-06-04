@@ -21,12 +21,17 @@ class PostsController < ApplicationController
       @post = @user.posts.build(post_params)
       @chat_room = ChatRoom.find(params[:chat_room_id])
       @post.chat_room = @chat_room
+      # if @post.save!
+      #   serialized_data = ActiveModelSerializers::Adapter::Json.new(
+      #     PostSerializer.new(@post)
+      #   ).serializable_hash
+      #   PostsChannel.broadcast_to @chat_room, serialized_data
+      #   head :ok
+      # end
       if @post.save!
-        serialized_data = ActiveModelSerializers::Adapter::Json.new(
-          PostSerializer.new(@post)
-        ).serializable_hash
-        PostsChannel.broadcast_to @chat_room, serialized_data
-        head :ok
+        render json: @post, status: :created, location: @post.chat_room
+      else
+        render json: @post.errors, status: :unprocessable_entity
       end
     end
   
