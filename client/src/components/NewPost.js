@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Button } from 'react-materialize'
-import { API_ROOT, HEADERS } from '../constants';
+import { API_ROOT } from '../constants';
 
 class NewPost extends Component {
     state = {

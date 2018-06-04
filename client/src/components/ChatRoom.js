@@ -4,7 +4,6 @@ import { API_ROOT } from '../constants';
 import axios from 'axios'
 import Cable from './Cable';
 import PostsList from './PostsList';
-import NewPost from './NewPost';
 
 class ChatRoom extends Component {
     state = {
@@ -28,16 +27,6 @@ class ChatRoom extends Component {
         }
     }
 
-    handleReceivedMessage = response => {
-        const { post } = response;
-        const chat_rooms = [...this.state.chat_rooms];
-        const chat_room = chat_rooms.find(
-            chat_room => chat_room.id === post.chat_room_id
-        );
-        chat_room.posts = [...chat_room.posts, post];
-        this.setState({ chat_room });
-    };
-
     render = () => {
         return (
             <div className="chatroomList">
@@ -59,11 +48,3 @@ class ChatRoom extends Component {
 }
 
 export default ChatRoom;
-
-// helpers
-
-const findActiveChatRoom = (chat_rooms, activeChatRoom) => {
-    return chat_rooms.find(
-        chat_room => chat_room.id === activeChatRoom
-    );
-};

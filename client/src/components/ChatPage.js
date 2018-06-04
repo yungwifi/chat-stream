@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import PostsList from './PostsList'
 import VideoPlayer from './VideoPlayer'
 import Navbar from './Navbar'
-import Chat from './Chat'
 import styled from 'styled-components'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-import { clearAuthTokens, saveAuthTokens, setAxiosDefaults, userIsLoggedIn } from "../util/SessionHeaderUtil"
+import { clearAuthTokens } from "../util/SessionHeaderUtil"
 import ChatRoom from './ChatRoom';
 
 const PageContainer = styled.div`

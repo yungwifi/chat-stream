@@ -2,7 +2,9 @@ class PostsChannel < ApplicationCable::Channel
   before_subscribe :authenticate_user!, :except => [:show, :index]
   def subscribed
     @user = current_user
-    @chat_room = ChatRoom.find(params[:chat_room])
+    @post = @user.posts.build(post_params)
+    @chat_room = ChatRoom.find(params[:chat_room_id])
+    @post.chat_room = @chat_room
     stream_for @chat_room
   end
 

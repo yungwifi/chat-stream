@@ -13,6 +13,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
     "react-youtube": "^7.6.0",
+    "react-youtube-playlist": "^2.2.7",
     "styled-components": "^3.3.0"
   },
   "scripts": {

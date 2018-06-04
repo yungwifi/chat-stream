@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-import { Button } from 'react-materialize'
 import NewPost from './NewPost';
 import { API_ROOT } from '../constants';
-import Cable from './Cable';
 
 const ChatBox = styled.div`
 border: solid black 1px;
