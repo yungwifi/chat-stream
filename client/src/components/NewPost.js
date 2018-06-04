@@ -21,7 +21,7 @@ class NewPost extends Component {
     createPost = (e) => {
         e.preventDefault()
         console.log("CREATE POST ROUTE BEING CALLED", this.state.post)
-        axios.post(`/chat_rooms/1/posts`, { post: this.state.post })
+        axios.post(`${API_ROOT}/chat_rooms/1/posts`, { post: this.state.post })
             .then((res) => {
                 console.log("RESPONSE FROM NEW POST", res.data)
                 this.setState({ post: res.data.posts, })
