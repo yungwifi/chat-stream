@@ -30,14 +30,14 @@ class ChatRoom extends Component {
     render = () => {
         return (
             <div className="chatroomList">
-                <ActionCable
+                {/* <ActionCable
                     channel={{ channel: 'ChatRoomChannel' }}
                     onReceived={this.handleReceivedConversation}
                 />
                 <Cable
                     chat_room={this.state.chat_rooms}
                     handleReceivedMessage={this.handleReceivedMessage}
-                />
+                /> */}
                 <PostsList
                     chat_room={this.state.chat_rooms}
                     chatRoomId={this.activeChatRoom}
