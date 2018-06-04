@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import SignUpLogIn from './SignUpLogIn';
-import { Modal, Button } from 'react-materialize'
+import { Modal, Button, i } from 'react-materialize'
 
 const Nav = styled.div`
 border: solid black 1px;

@@ -29,7 +29,7 @@ class VideoPlayer extends React.Component {
                     opts={opts}
                     onReady={this.playVideo}
                 />
-                <div> watch shit, dont be creepy </div>
+                <div> watch, chat, dont be creepy </div>
             </div>
         );
     }
