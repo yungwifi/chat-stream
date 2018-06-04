@@ -27,7 +27,7 @@ class PostsList extends Component {
 
     getPosts = async () => {
         try {
-            const response = await axios.get(`${API_ROOT}/chat_rooms/1/posts`)
+            const response = await axios.get(`/chat_rooms/1/posts`)
             this.setState({
                 posts: response.data,
             })

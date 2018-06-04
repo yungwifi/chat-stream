@@ -17,7 +17,7 @@ class ChatRoom extends Component {
 
     getChatRoom = async () => {
         try {
-            const response = await axios.get(`${API_ROOT}/chat_rooms/`)
+            const response = await axios.get(`/chat_rooms/`)
             this.setState({
                 chat_rooms: response.data,
             })
