@@ -21,7 +21,6 @@ class ChatRoom extends Component {
             const response = await axios.get(`${API_ROOT}/chat_rooms/`)
             this.setState({
                 chat_rooms: response.data,
-                activeChatRoom: this.state.chat_rooms.id
             })
             console.log(this.state.chat_rooms)
         } catch (error) {
@@ -29,8 +28,8 @@ class ChatRoom extends Component {
         }
     }
 
-    handleClick = id => {
-        this.setState({ activeChatRoom: id });
+    setChatRoomId = () => {
+        this.setState({ activeChatRoom: this.state.chat_rooms.id });
     };
 
     handleReceivedConversation = response => {
@@ -63,6 +62,7 @@ class ChatRoom extends Component {
                 />
                 <PostsList
                     chat_room={this.state.chat_rooms}
+                    setChatRoomId={this.setChatRoomId}
                 />
             </div>
         );

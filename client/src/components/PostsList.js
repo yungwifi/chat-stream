@@ -60,7 +60,9 @@ class PostsList extends Component {
                         {userPosts}
                     </div>
                     <div>
-                        <NewPost />
+                        <NewPost
+                            chat_room={this.props.chat_room.id}
+                            setChatRoomId={this.props.setChatRoomId} />
                     </div>
                 </ChatBox>
             </div>

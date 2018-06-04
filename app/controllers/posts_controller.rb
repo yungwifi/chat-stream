@@ -15,17 +15,6 @@ class PostsController < ApplicationController
   
       render json: @post
     end
-  
-    # def create
-    #   @user = current_user
-    #   @post = @user.posts.build(post_params)
-  
-    #   if @user.save
-    #     render json: @post, status: :created, location: @post
-    #   else
-    #     render json: @post.errors, status: :unprocessable_entity
-    #   end
-    # end
 
     def create
       @user = current_user
@@ -35,7 +24,7 @@ class PostsController < ApplicationController
         serialized_data = ActiveModelSerializers::Adapter::Json.new(
           PostSerializer.new(post)
         ).serializable_hash
-        PostsChannel.broadcast_to chat_room, serialized_data
+        PostsChannel.broadcast_to @chat_room, serialized_data
         head :ok
       end
     end
@@ -61,6 +50,6 @@ class PostsController < ApplicationController
     private
   
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit(:content)
     end
   end

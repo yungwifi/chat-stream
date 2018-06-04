@@ -37,7 +37,7 @@ class NewPost extends Component {
         return (
             <div>
                 <form onSubmit={this.createPost}>
-                    <textarea type="text" name="content" onChange={this.handleChange}> </textarea>
+                    <textarea onClick={this.props.setChatRoomId} type="text" name="content" onChange={this.handleChange}> </textarea>
                     <Button className="black right"> Send </Button>
                 </form>
             </div>
