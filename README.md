@@ -1,6 +1,13 @@
 # Chat Stream
 Chat Stream is an application where users can create accounts and chat with people through websockets while watching a hardcoded Youtube playlist. You can choose to observe or partake in the chat antics. Very minimal app built with React on Rails using Devise or user authentication and Action Cable for the web sockets. 
 
+# Known Bugs / Issues 
+Currently a user can sign in on the Heroku deployed app but cannot post to the chatroom. There is currently a 404 error that I am trying to work out. Other than that if you would like to use this app on your local machine clone the repo down.
+
+Run `bundle install`
+Then `foreman start -f Procfile.dev`
+In your command line. 
+
 # Technologies Used 
 1. React
 3. Babel / JSX
