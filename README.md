@@ -15,7 +15,7 @@ In your command line.
 5. Materialize for React
 6. Ruby on Rails
 7. PostgreSQL
-8. Mongoose
+8. Active Record 
 9. Javascript 
 10. Foreman 
 11. Palleton
